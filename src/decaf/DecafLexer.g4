@@ -9,32 +9,102 @@ options
   language=Java;
 }
 
-tokens
-{
-  TK_class
-}
+//tokens
+//{
+   
+// TK_class
 
-LCURLY : '{';
-RCURLY : '}';
+//}  
+ 	// ESPAÇOS EM BRANCO  E COMENTARIOS
 
-RESERVADA : 
-   ('i' 'f') | ('b' 'o' 'o' 'l' 'e' 'a' 'n') | ('b' 'r' 'e' 'a' 'k') | ('c' 'a' 'l' 'l' 'o' 'u' 't') | ('c' 'l' 'a' 's' 's') | ('c' 'o' 'n' 't' 'i' 'n' 'u' 'e') | ('e' 'l' 's' 'e') | ('f' 'a' 'l' 's' 'e') | ('f' 'o' 'r') | ('i' 'n' 't') | ('r' 'e' 't' 'u' 'r' 'n') | ('t' 'r' 'u' 'e') | ('v' 'o' 'i' 'd');
+ WS_ : 			(' ' | '\n' | '\r' | '\t' ) -> skip;
 
-ID  :
-  ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
 
-WS_ : 
-  (' ' | '\n' ) -> skip;
+ SL_COMMENT : 		'//' (~'\n')* '\n' -> skip;
 
-SL_COMMENT : '//' (~'\n')* '\n' -> skip;
 
-OPERATOR : '+' | '-' | '*' | '<' | '<' '=' | '>' '=' | '!' '=' | '=' '=' | '>' | '|' '|' | '&' '&';
-CHAR : '\'' (ESC|~('\''|'\\'|'\n'|'"'))? '\'';
-STRING : '"' (ESC|~('"'|'\\'|'\''))* '"';
-NUMBER : ('0' 'x'  ('a'..'f' | 'A'..'F'| '0'..'9')+) | (('-'|'+')? ('0'..'9')+);
+ 	// PALAVRAS RESERVADAS
 
-fragment
-ESC :  '\\' ('n'|'"'|'t'|'\\'|'\'');
+ 
+ PROGRAM: 			 'Program';
+ CLASS: 			 'class'; 
+ VOID:				 'void'; 
+ BOOL_LITERAL:			 'false' | 'true'; 
+ FOR:  				 'for';  
+ RETURN: 			 'return';  
+ CONTINUE: 			 'continue';  
+ IF:              		 'if'; 
+ ELSE: 				 'else';
+ BREAK: 			 'break';
+ CALLOUT: 	   	  	 'callout';
+ TYPE: 			  	 'boolean' | 'int';
+
+ RESERVWORD : TYPE | BREAK | CALLOUT | CLASS | CONTINUE | ELSE | FOR | RETURN | IF | VOID | BOOL_LITERAL | CLASS | PROGRAM ;
+
+ 	// SIMBOLOS 
+
+
+
+ PL: 				'(' ;          
+ PR: 				')' ;
+ LCURLY : 			'{' ;
+ RCURLY : 			'}' ; 
+ PONT_V: 			';' ;
+ VIRGULA:  			',' ;
+ CL: 				'[' ;
+ CR: 				']' ;  
+ 
+ // OPERADORES
+
+ 
+ BINOP:  		'<=' | '!=' | '==' | '<' | '>' | '>=' |  '&&' | '||' | '+' | '*' | '/' | '%' ;
+
+ IGUAL_OP: '=';
+ SMENOS: '-'; 
+ SAFIRMA: '!';
+
+ REL_OP: 		'<' | '>' | '<=' | '>=';
+ 
+ EQ_OP:  		'==' | '!=' ;
+ 
+ COND_OP : 		'&&' | '||'  ;
+
+ ASSING_OP: 		 '/=' | '+='| '-=' | '*='; 
+
+ 
+//ARITH_OP:  		(SMENOS) | (SMAIS) | '*' | '/' | '%' | ;
+
+
+ SYMBOLS: 		(VIRGULA) | '[' | ']' | '||' | '(' | ')' | (PONT_V) | '\'' ; 
+
+ 
+
+  
+ 	// IDENTIFIER
+  
+ ID: ('_' | LETRAS)('_' |  LETRAS | DIGIT)* ;  
+
+ LETRAS: ('a'..'z'  | 'A'..'Z'); 
+ 
+ 
+	 //  NUMEROS
+ 
+
+ INT_LITERAL: 			DECIMAL_LITERAL | HEX_LITERAL;
+
+ HEX_LITERAL: 			'0x'(DIGIT | 'a'..'f' | 'A'..'F')+ ;
+
+ DECIMAL_LITERAL: 		DIGIT+;
+ 
+ DIGIT:  ('0'..'9');
+
+ STRING_LITERAL : 		'"'  ( CHAR | ESC )* '"' ;
+ CHAR_LITERAL : 		'\'' ( ESC  | CHAR ) '\'' ;
+ 
+ CHAR :	']'..'~' | '#'..'&' | '('..'[' | ' ' | '!'  ;
+
+ ESC : '\\' ( 'r' | 'n' | 't' | '\'' | '"' | '\\' ) ;
+ 
 
 
 
