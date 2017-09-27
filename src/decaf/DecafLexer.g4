@@ -15,7 +15,8 @@ options
 // TK_class
 
 //}  
- 	// ESPAÇOS EM BRANCO  E COMENTARIOS
+
+// ESPAÇOS EM BRANCO  E COMENTARIOS
 
  WS_ : 			(' ' | '\n' | '\r' | '\t' ) -> skip;
 
@@ -23,7 +24,8 @@ options
  SL_COMMENT : 		'//' (~'\n')* '\n' -> skip;
 
 
- 	// PALAVRAS RESERVADAS
+
+// PALAVRAS RESERVADAS
 
  
  PROGRAM: 			 'Program';
@@ -80,14 +82,14 @@ options
  
 
   
- 	// IDENTIFIER
+// IDENTIFIER
   
  ID: ('_' | LETRAS)('_' |  LETRAS | DIGIT)* ;  
 
  LETRAS: ('a'..'z'  | 'A'..'Z'); 
  
  
-	 //  NUMEROS
+//  NUMEROS
  
 
  INT_LITERAL: 			DECIMAL_LITERAL | HEX_LITERAL;
