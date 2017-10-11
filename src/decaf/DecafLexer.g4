@@ -89,7 +89,7 @@ options
  LETRAS: ('a'..'z'  | 'A'..'Z'); 
  
  
-//  NUMEROS
+0//  NUMEROS
  
 
  INT_LITERAL: 			DECIMAL_LITERAL | HEX_LITERAL;
