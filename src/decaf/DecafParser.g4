@@ -4,8 +4,7 @@ parser grammar DecafParser;
 package decaf;
 }
 
-options
-{
+options {
   language=Java;
   tokenVocab=DecafLexer;
 }
